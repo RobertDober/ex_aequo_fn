@@ -5,7 +5,7 @@ defmodule SimpleArgs.MixProject do
 
   def project do
     [
-      app: :ex_aequo_kwds,
+      app: :ex_aequo_fn,
       version: @version,
       elixir: "~> 1.17",
       elixirc_paths: elixirc_paths(Mix.env()),

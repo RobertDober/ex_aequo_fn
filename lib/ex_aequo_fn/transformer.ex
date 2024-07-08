@@ -1,5 +1,8 @@
 defmodule ExAequoFn.Transformer do
+  use ExAequoFn.Types
+
   @moduledoc ~S"""
+
   Implements functional transformation helpers
 
   ### `many`
@@ -13,16 +16,19 @@ defmodule ExAequoFn.Transformer do
   elements, then the tuple `{:ok, [transformed values,...]}` is returned, otherwise
   `:error` is returned
 
-      iex(0)> ft = %{a: 1, b: 2}
-      ...(0)> st = %{a: 2, x: 3}
-      ...(0)> ff = &Map.fetch(ft, &1)
-      ...(0)> sf = &Map.fetch(st, &1)
-      ...(0)> assert many([:a, :x], [ff, sf]) == {:ok, [1, 3]}
-      ...(0)> assert many([:a, :z], [ff, sf]) == :error
+      iex(1)> ft = %{a: 1, b: 2}
+      ...(1)> st = %{a: 2, x: 3}
+      ...(1)> ff = &Map.fetch(ft, &1)
+      ...(1)> sf = &Map.fetch(st, &1)
+      ...(1)> assert many([:a, :x], [ff, sf]) == {:ok, [1, 3]}
+      ...(1)> assert many([:a, :z], [ff, sf]) == :error
+
   """
 
+  @spec many(list(), transformers_t()) :: result_t(list())
   def many(values, transformers), do: _many(values, transformers, transformers, [])
 
+  @spec _many(list(), transformers_t(), transformers_t(), list()) :: result_t(list())
   defp _many(values, transformers, current, result)
   defp _many([], _, _, result), do: {:ok, Enum.reverse(result)}
   defp _many(_, _, [], _), do: :error

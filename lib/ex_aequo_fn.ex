@@ -1,6 +1,4 @@
 defmodule ExAequoFn do
-  # use ExAequoFn.Types
-
   @moduledoc ~S"""
   Functional helpers
 

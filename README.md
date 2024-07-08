@@ -76,6 +76,34 @@ Short for `const_fn(nil, ...)`
     {:alpha, "beta"}
 ```
 
+ ### `transform_many`
+ 
+ delegates to `ExAequoFn.Transformer.many` (see below for details)
+
+
+
+Implements functional transformation helpers
+
+### `many`
+
+`many` takes a list and a list of transsformers. A transformer is simply a function
+that returns either `{:ok, value}` or `:error`
+
+The list is traversed by calling all transformers on each element of the list until
+the first transformer returns an `{:ok, value}` tuple in which case the element is
+replaced by `value`. If a transformer returning an `:ok` value is found for **all**
+elements, then the tuple `{:ok, [transformed values,...]}` is returned, otherwise
+`:error` is returned
+
+```elixir
+    iex(1)> ft = %{a: 1, b: 2}
+    ...(1)> st = %{a: 2, x: 3}
+    ...(1)> ff = &Map.fetch(ft, &1)
+    ...(1)> sf = &Map.fetch(st, &1)
+    ...(1)> assert many([:a, :x], [ff, sf]) == {:ok, [1, 3]}
+    ...(1)> assert many([:a, :z], [ff, sf]) == :error
+```
+
 
 
 
