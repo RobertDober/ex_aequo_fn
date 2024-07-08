@@ -12,6 +12,7 @@ Functional Tools and Helpers
 ## Documentation
 
 <%= xtra.moduledoc "ExAequoFn", wrap_code_blocks: "elixir" %>
+<%= xtra.moduledoc "ExAequoFn.Transformer", wrap_code_blocks: "elixir" %>
 
 
 

@@ -1,4 +1,6 @@
 defmodule ExAequoFn do
+  # use ExAequoFn.Types
+
   @moduledoc ~S"""
   Functional helpers
 
@@ -43,20 +45,36 @@ defmodule ExAequoFn do
       iex(9)> tagged_fn(:alpha).("beta")
       {:alpha, "beta"}
 
+   ### `transform_many`
+   
+   delegates to `ExAequoFn.Transformer.many` (see below for details)
+
   """
+
+  @spec const_fn(a) :: a when a: any()
   def const_fn(const), do: fn -> const end
+  @spec const_fn(a, any()) :: a when a: any()
   def const_fn(const, _), do: const
+  @spec const_fn(a, any(), any()) :: a when a: any()
   def const_fn(const, _, _), do: const
+  @spec const_fn(a, any(), any(), any()) :: a when a: any()
   def const_fn(const, _, _, _), do: const
 
+  @spec nil_fn() :: nil
   def nil_fn, do: nil
+  @spec nil_fn(any()) :: nil
   def nil_fn(_), do: nil
+  @spec nil_fn(any(), any()) :: nil
   def nil_fn(_, _), do: nil
+  @spec nil_fn(any(), any(), any()) :: nil
   def nil_fn(_, _, _), do: nil
 
+  @spec tagged_fn(a) :: (b -> {a, b}) when a: any(), b: any()
   def tagged_fn(tag) do
     fn x -> {tag, x} end
   end
+
+  defdelegate transform_many(input, transformations), to: __MODULE__.Transformer, as: :many
 end
 
 # SPDX-License-Identifier: AGPL-3.0-or-later
