@@ -1,20 +1,17 @@
 <%= xtra.do_not_edit_warning template: template %>
 
-[![CI](https://github.com/RobertDober/ex_aequo_kwds/actions/workflows/elixir.yml/badge.svg)](https://github.com/RobertDober/ex_aequo_kwds/actions)
-[![Hex.pm](https://img.shields.io/hexpm/v/ex_aequo_kwds.svg)](https://hex.pm/packages/ex_aequo_kwds)
-[![Hex.pm](https://img.shields.io/hexpm/dw/ex_aequo_kwds.svg)](https://hex.pm/packages/ex_aequo_kwds)
-[![Hex.pm](https://img.shields.io/hexpm/dt/ex_aequo_kwds.svg)](https://hex.pm/packages/ex_aequo_kwds)
+[![CI](https://github.com/RobertDober/ex_aequo_fn/actions/workflows/elixir.yml/badge.svg)](https://github.com/RobertDober/ex_aequo_fn/actions)
+[![Hex.pm](https://img.shields.io/hexpm/v/ex_aequo_fn.svg)](https://hex.pm/packages/ex_aequo_fn)
+[![Hex.pm](https://img.shields.io/hexpm/dw/ex_aequo_fn.svg)](https://hex.pm/packages/ex_aequo_fn)
+[![Hex.pm](https://img.shields.io/hexpm/dt/ex_aequo_fn.svg)](https://hex.pm/packages/ex_aequo_fn)
 
-# ExAequoKwds
+# ExAequoFn
 
- Tools to handle access and constraints to Keyword Lists
+Functional Tools and Helpers 
 
 ## Documentation
 
-<%= xtra.moduledoc "ExAequoKwds", wrap_code_blocks: "elixir" %>
-
-<% #= xtra.functiondoc "ExAequoColors.color/2", wrap_code_blocks: "elixir", headline: 3 %>
-
+<%= xtra.moduledoc "ExAequoFn", wrap_code_blocks: "elixir" %>
 
 
 

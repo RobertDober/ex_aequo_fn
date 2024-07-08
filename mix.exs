@@ -1,7 +1,7 @@
 defmodule SimpleArgs.MixProject do
   use Mix.Project
-  @version "0.1.1"
-  @url "https://github.com/RobertDober/ex_aequo_kwds"
+  @version "0.1.0"
+  @url "https://github.com/RobertDober/ex_aequo_fn"
 
   def project do
     [
@@ -11,7 +11,7 @@ defmodule SimpleArgs.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      description: "Tools to handle access and constraints to Keyword Lists",
+      description: "Functional tools and helpers extracted from ex_aequo",
       package: package(),
       preferred_cli_env: [
         coveralls: :test,
@@ -61,10 +61,9 @@ defmodule SimpleArgs.MixProject do
   end
 
   defp elixirc_paths(:test), do: ["lib", "examples", "test/support"]
-  defp elixirc_paths(:dev), do: ["lib", "examples", "dev"]
   defp elixirc_paths(_), do: ["lib"]
 
-  @module "ExAequoKwds"
+  @module "ExAequoFn"
 
   defp build_docs(_) do
     Mix.Task.run("compile")
