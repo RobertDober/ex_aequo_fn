@@ -1,4 +1,4 @@
-defmodule SimpleArgs.MixProject do
+defmodule ExAequoFn.MixProject do
   use Mix.Project
   @version "0.1.1"
   @url "https://github.com/RobertDober/ex_aequo_fn"
@@ -35,7 +35,7 @@ defmodule SimpleArgs.MixProject do
   defp deps do
     [
       {:dialyxir, "~> 1.4.3", only: [:dev], runtime: false},
-      {:excoveralls, "~> 0.18.1", only: [:test]},
+      {:excoveralls, "~> 0.18.2", only: [:test]},
       {:extractly, "~> 0.5.4", only: [:dev]}
     ]
   end

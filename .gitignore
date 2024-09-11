@@ -25,3 +25,5 @@ ex_aequo_fn-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 
+.local/
+tags
