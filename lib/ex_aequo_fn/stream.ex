@@ -31,9 +31,42 @@ defmodule ExAequoFn.Stream do
   end
 
   def zipn(streams) do
-    _zipn(streams, [], [])
+    _zipn(streams)
+    |> Enum.to_list 
   end
-  def zipn(streams)
+
+  defp _zip_get_row(streams, treated, row)
+  defp _zip_get_row([], treated, row) do
+    row1 = row
+    |> Enum.reverse 
+    |> List.to_tuple
+    {row1, Enum.reverse(treated)}
+  end
+  defp _zip_get_row([hs|ts], treated, row) do
+    if Enum.empty?(hs) do
+      if Enum.empty?(treated) do
+        nil
+      else
+        _zip_get_row(ts, [hs|treated], [nil|row])
+      end
+    else
+      {h, t} = next(hs)
+      _zip_get_row(ts, [t|treated], [h|row])
+    end
+  end
+
+  defp _zipn(streams) do
+    Stream.unfold(streams, &_zip_get_row(&1, [], []))
+  end
+  # defp _zipn([], result) do
+  #   Enum.reverse(result)
+  # end
+  # defp _zipn(streams, result) do
+  #   case _zip_get_row(streams, [], []) do
+  #     :stop -> Enum.reverse(result)
+  #     {row, next_streams} -> _zipn(next_streams, [row|result])
+  #   end
+  # end
 end
 
 # SPDX-License-Identifier: AGPL-3.0-or-later
