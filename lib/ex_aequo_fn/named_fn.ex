@@ -9,11 +9,27 @@ defmodule ExAequoFn.NamedFn do
   @type t :: %__MODULE__{fun: function_t(), name: binary(), arity: non_neg_integer()}
 
 
+  @doc ~S"""
+  Same as `call(..., [])`, basically extracting fun
+  """
   @spec call(t()) :: any()
   def call(%__MODULE__{}=myself) do
     call(myself, [])
   end
 
+  @doc ~S"""
+  This can also curry into a function
+
+        iex(1)> join3 = new(&Enum.join([&1, &2, &3], "-"), "joiner")
+        ...(1)> join2 = call(join3, ~W[a])
+        ...(1)> assert join2.(~W[b c]) == "a-b-c"
+
+  But be careful with arg sizes
+
+        iex(2)> adder = new(&(&1 + &2))
+        ...(2)> assert_raise(ArgumentError, fn -> call(adder, [1, 2, 3]) end)
+
+  """
   @spec call(t(), any()) :: any()
   def call(named_fn, value)
   def call(%__MODULE__{}=myself, value) when is_list(value) do
@@ -23,10 +39,12 @@ defmodule ExAequoFn.NamedFn do
     _apply(myself, [value])
   end
 
-  @spec new(function_t(), binary?(), non_neg_integer()) :: t()
-  def new(fun, name \\ nil, arity \\ 1) do
-    name = name || inspect(fun)
-    %__MODULE__{fun: fun, arity: arity, name: name}
+  @spec new(function_t(), binary?()) :: t()
+  def new(fun, name \\ nil) do
+    with {:arity, arity} <- Function.info(fun, :arity) do
+      name = name || inspect(fun)
+      %__MODULE__{fun: fun, arity: arity, name: name}
+    end
   end
 
   @spec _apply(t(), list()) :: any()

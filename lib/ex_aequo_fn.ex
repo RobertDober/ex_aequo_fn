@@ -34,7 +34,7 @@ defmodule ExAequoFn do
 
   They can be curried, (but that might not be very useful with arity 1)
 
-      iex(6)> add1 = named_fn(&(&1+1), "add_one", 1)
+      iex(6)> add1 = named_fn(&(&1+1), "add_one")
       ...(6)> assert is_function(NamedFn.call(add1))
       ...(6)> assert is_function(NamedFn.call(add1, []))
       ...(6)> NamedFn.call(add1).(72)
@@ -42,11 +42,13 @@ defmodule ExAequoFn do
 
   But more useful with higher arities
 
-      iex(7)> adder = named_fn(&(&1+&2), "adder", 2)
+      iex(7)> adder = named_fn(&(&1+&2), "adder")
       ...(7)> assert is_function(NamedFn.call(adder))
       ...(7)> add42 = NamedFn.call(adder, 42)
       ...(7)> add42.(31)
       73
+
+  More examples can be found in the doctests of `NamedFn`
 
   ### `nil_fn`
 
@@ -86,8 +88,8 @@ defmodule ExAequoFn do
   @spec const_fn(a, any(), any(), any()) :: a when a: any()
   def const_fn(const, _, _, _), do: const
 
-  @spec named_fn(function_t(), binary?(), non_neg_integer()) :: NamedFn.t()
-  defdelegate named_fn(fun, name \\ nil, arity \\ 1), to: NamedFn, as: :new
+  @spec named_fn(function_t(), binary?()) :: NamedFn.t()
+  defdelegate named_fn(fun, name \\ nil), to: NamedFn, as: :new
     
   @spec nil_fn() :: nil
   def nil_fn, do: nil
