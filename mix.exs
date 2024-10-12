@@ -1,6 +1,6 @@
 defmodule ExAequoFn.MixProject do
   use Mix.Project
-  @version "0.1.1"
+  @version "0.1.2"
   @url "https://github.com/RobertDober/ex_aequo_fn"
 
   def project do
@@ -46,6 +46,7 @@ defmodule ExAequoFn.MixProject do
         "lib",
         "mix.exs",
         "README.md",
+        "RELEASE.md",
         "LICENSE"
       ],
       maintainers: [
