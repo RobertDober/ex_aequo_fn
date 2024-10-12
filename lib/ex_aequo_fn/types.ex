@@ -5,7 +5,9 @@ defmodule ExAequoFn.Types do
 
   defmacro __using__(_opts) do
     quote do
+      @type binary? :: maybe(binary())
       @type either_t(error_t, ok_t) :: {:ok, ok_t} | {:error, error_t}
+      @type function_t :: (... -> any())
       @type maybe(t) :: nil | t
       @type result_t(t) :: {:ok, t} | :error
       @type stream_t :: %Stream{}

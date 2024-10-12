@@ -1,5 +1,6 @@
 defmodule ExAequoFnTest do
   use ExUnit.Case
+  alias ExAequoFn.NamedFn
   doctest ExAequoFn, import: true
 end
 
