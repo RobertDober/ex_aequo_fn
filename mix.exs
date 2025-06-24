@@ -1,24 +1,18 @@
 defmodule ExAequoFn.MixProject do
   use Mix.Project
-  @version "0.1.2"
+  @version "0.1.3"
   @url "https://github.com/RobertDober/ex_aequo_fn"
 
   def project do
     [
       app: :ex_aequo_fn,
       version: @version,
-      elixir: "~> 1.17",
+      elixir: "~> 1.19-rc",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: "Functional tools and helpers extracted from ex_aequo",
       package: package(),
-      preferred_cli_env: [
-        coveralls: :test,
-        "coveralls.detail": :test,
-        "coveralls.post": :test,
-        "coveralls.html": :test
-      ],
       test_coverage: [tool: ExCoveralls],
       aliases: [docs: &build_docs/1]
     ]
@@ -27,16 +21,20 @@ defmodule ExAequoFn.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      # extra_applications: [:logger]
     ]
+  end
+
+  def cli do
+      [preferred_envs: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test]]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:dialyxir, "~> 1.4.3", only: [:dev], runtime: false},
-      {:excoveralls, "~> 0.18.2", only: [:test]},
-      {:extractly, "~> 0.5.4", only: [:dev]}
+      {:dialyxir, "~> 1.4.5", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.18.5", only: [:test]},
+      {:extractly, "~> 0.6.1", only: [:dev]}
     ]
   end
 
